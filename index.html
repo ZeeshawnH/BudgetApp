@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>Budget App</Title>
+        <link rel="stylesheet" href="styles.css">
+        
+    </head>
+    <body>
+        <div class="container">
+            <h1>My Budget</h1>
+            <form id="makeBudget">
+                <div class="field">
+                    <input type="number" placeholder="Income" id="income">
+                    <small id="incomeError"></small>
+                    <div class="addCategory">
+                            <input type="text" name="addExpense" id="addExpense" placeholder="Add Expense">
+                            <small id="expenseError"></small>
+                            <input type="number" id="proportion" placeholder="Percent of Income">
+                            <small id="percentError"></small>
+                            <input type="button" id="add" value="Add">
+                    </div>
+                </div>
+                <small id="categoryError"></small>
+                <table id="categories">
+                </table>
+                <input type="submit" id="submit">
+            </form>
+            <input type="button" id="categoriesButton" value="Print Categories and Percents">
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
