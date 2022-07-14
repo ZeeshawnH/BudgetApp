@@ -5,8 +5,6 @@ const form = document.getElementById("makeBudget");
 const income = document.getElementById("income");
 
 
-
-
 // Create a new category fields
 const category = document.getElementById("addExpense");
 const proportion = document.getElementById("proportion");
@@ -24,6 +22,17 @@ var closeButtons = document.getElementsByClassName("close");
 // Sum of categories
 var categories = [];
 var percentages = [];
+var moneyAllocated = [];
+
+// Income label
+var incomeLabel = document.getElementById("incomeLabel");
+
+// Submit button
+const submitButton = document.getElementById("submit");
+
+// Back button
+const backButton = document.getElementById("backButton");
+
 
 
 
@@ -100,6 +109,8 @@ add.addEventListener('click', (event) => {
 
         category.value = "";
         proportion.value = "";
+
+        category.focus();
     }
 });
 
@@ -116,8 +127,13 @@ for (let i = 0; i < categoryFields.length; i++) {
 
 // Form Submission
 form.addEventListener("submit", (event) => {
+    let incomeValue = income.value;
+
     setEmpty("incomeError");
     setEmpty("categoryError");
+
+    setEmpty("expenseError");
+    setEmpty("percentError");
 
     event.preventDefault();
     let valid = true;
@@ -133,16 +149,71 @@ form.addEventListener("submit", (event) => {
     }
 
     if (valid) {
-        for (let i = 0; i < table.rows.length; i++) {
-            table.rows[i].style.display = "none";
-        }
+        
         for (let i = 0; i < categoryFields.length; i++) {
-            categoryFields[i].style.display = "none";
+            categoryFields[i].classList.add("hidden");
         }
+
+        incomeLabel.innerText = "Income: $" + incomeValue;
+
+        let headerRow = table.rows[0];
+        let amount = document.createElement("th");
+        amount.appendChild(document.createTextNode("Amount Contriubted ($)"));
+        headerRow.appendChild(amount);
+
+        for (let i = 1; i < table.rows.length; i++) {
+            let proportion = percentages[i - 1];
+            let amountContributed = proportion * incomeValue;
+            let amountColumn = document.createElement("td");
+            amountColumn.appendChild(document.createTextNode("$" + round(amountContributed)));
+            moneyAllocated.push(amountContributed);
+
+
+            table.rows[i].insertBefore(amountColumn, table.rows[i].childNodes[2]);
+        }
+
+        let totalRow = document.createElement("tr");
+        let totalText = document.createElement("th");
+        totalText.appendChild(document.createTextNode("Total"));
+
+        let totalPercent = document.createElement("td");
+        totalPercent.appendChild(document.createTextNode((round(sumPercentages() * 100)) + "%"));
+
+        let totalIncomeUsed = document.createElement("td");
+        totalIncomeUsed.appendChild(document.createTextNode("$" + round(sumArray(moneyAllocated))));
+
+        totalRow.appendChild(totalText);
+        totalRow.appendChild(totalPercent);
+        totalRow.appendChild(totalIncomeUsed);
+
+        tableBody.appendChild(totalRow);
+
+        submitButton.classList.add("hidden");
+        backButton.classList.remove("hidden");
+
     }
 
 })
 
+// Back button event handler
+backButton.addEventListener("click", (event) => {
+    incomeLabel.innerText = "";
+
+    for (let i = 0; i < table.rows.length; i++) {
+        table.rows[i].deleteCell(2);
+    }
+    table.deleteRow(table.rows.length - 1);
+
+    moneyAllocated = [];
+
+    backButton.classList.add("hidden");
+    submitButton.classList.remove("hidden");
+
+    for (let i = 0; i < categoryFields.length; i++) {
+        categoryFields[i].classList.remove("hidden");
+    }
+
+})
 
 // Error Message
 function errorMessage(id, message) {
@@ -156,18 +227,25 @@ function setEmpty(id) {
 }
 
 function sumPercentages() {
+    return sumArray(percentages);
+}
+
+function sumArray(array) {
     let sum = 0;
-    for (let i = 0; i < percentages.length; i++) {
-        sum += percentages[i];
+    for (let i = 0; i < array.length; i++) {
+        sum += array[i];
     }
     return sum;
+}
+
+function round(num) {
+    return Math.round(num * 100) / 100;
 }
 
 
 
 
 document.getElementById("categoriesButton").addEventListener("click", (event) => {
-    console.log(categories);
-    console.log(percentages);
-    console.log(table.rows);
+    console.log(tableBody);
+    console.log(table.rows[1].childNodes)
 })

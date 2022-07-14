@@ -80,3 +80,15 @@ table, th, td {
 #submit:hover {
     background-color: #45a049;
 }
+
+#backButton {
+    cursor: pointer;
+}
+
+#backButton:hover {
+    background-color: #b1b1b1;
+}
+
+.hidden {
+    display: none;
+}
