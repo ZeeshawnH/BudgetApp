@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ExpenseTable, { Expense, ExpenseProps } from './components/ExpenseTable';
+import ExpenseTable, { ExpenseProps } from './components/ExpenseTable';
 import './App.css';
 import './styles.css';
 import AddExpenses from './components/AddExpenses';
@@ -18,18 +18,8 @@ function App() {
   const [income, setIncome] = useState(0);
   const [expenses, setExpenses] = useState<ExpenseProps[]>([...EXPENSES]);
 
+  const total = expenses.reduce((sum, e) => sum + e.amount, 0);
 
-  const handleSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-
-    // Set income
-    const incomeInput = document.getElementById("income") as HTMLInputElement;
-    const incomeValue = parseFloat(incomeInput.value);
-    setIncome(incomeValue);
-
-    // Set categories
-    
-  }
   return (
     <div className="App">
       {/* <header className="App-header"> */}
@@ -38,8 +28,8 @@ function App() {
             <h1>My Budget</h1>
             <input type="number" placeholder="Income" id="income" />
             <small id="incomeError"></small>
+            <ExpenseTable expenses={expenses} onDelete={setExpenses} total={total}/>
             <AddExpenses expenses={expenses} onAddExpense={setExpenses}/>
-            <ExpenseTable expenses={expenses} onDelete={setExpenses}/>
             <input type="button" id="backButton" value="Back" className="hidden" />
             <input type="button" id="categoriesButton" value="Print Categories and Percents" />
         </div>
