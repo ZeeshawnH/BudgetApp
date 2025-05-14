@@ -1,4 +1,4 @@
-import React, { Dispatch, FormEvent, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import { ExpenseProps } from './ExpenseTable';
 
