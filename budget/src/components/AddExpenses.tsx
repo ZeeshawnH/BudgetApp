@@ -12,6 +12,7 @@ export default function AddExpenses({expenses, onAddExpense}: AddExpenseProps) {
   const [amount, setAmount] = useState(0);
   const [nameError, setNameError] = useState("");
   const [amountError, setAmountError] = useState("");
+  const [category, setCategory] = useState("");
 
   const handleAddExpense = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,12 +29,13 @@ export default function AddExpenses({expenses, onAddExpense}: AddExpenseProps) {
     // Call the onAddExpense function passed from the parent component
     onAddExpense(
       [...expenses,
-      {expenseName: expenseName, amount: amount}
+      {expenseName: expenseName, amount: amount, category: category || undefined}
       ]
     );
     // Clear the input fields
     setExpenseName("");
     setAmount(0);
+    setCategory("");
     setNameError("");
     setAmountError("");
   }
@@ -64,6 +66,18 @@ export default function AddExpenses({expenses, onAddExpense}: AddExpenseProps) {
             onChange={(e) => {
               setAmount(Number(e.target.value));
               setAmountError("");
+            }}
+          />
+          {amountError && <small className="error-message">{amountError}</small>}
+        </div>
+        <div className="input-group">
+          <input
+            type="text"
+            className={`form-input`}
+            placeholder="Category (optional)"
+            value={category || ''}
+            onChange={(e) => {
+              setCategory((e.target.value));
             }}
           />
           {amountError && <small className="error-message">{amountError}</small>}

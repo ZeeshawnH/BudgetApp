@@ -273,3 +273,166 @@ table, th, td {
 .add-button:active {
     transform: translateY(0);
 }
+
+.income-form {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.income-form .form-group {
+    width: 100%;
+}
+
+.income-form .input-group {
+    flex: 2;
+}
+
+.income-form .frequency-select {
+    flex: 1;
+}
+
+.income-form .add-button {
+    flex: 1;
+}
+
+.income-form .add-button:hover {
+    background-color: #37b24d;
+}
+
+.income-display {
+    background: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.income-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+.income-amount {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #40c057;
+    font-family: 'Courier New', monospace;
+}
+
+.frequency-select {
+    padding: 0 16px;
+    height: 48px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 8px;
+}
+
+.frequency-select:focus {
+    outline: none;
+    border-color: #4dabf7;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
+}
+
+.expense-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.expense-edit {
+    color: #4dabf7;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 8px;
+}
+
+.expense-edit:hover {
+    color: white;
+    background-color: #4dabf7;
+}
+
+.expense-row.edit-form {
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 8px 0;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.expense-row.edit-form .input-group {
+    margin: 0;
+}
+
+.expense-row.edit-form .input-group:first-child {
+    width: 25%; /* Name field */
+}
+
+.expense-row.edit-form .input-group:nth-child(2) {
+    width: 15%; /* Amount field - reduced from 20% */
+}
+
+.expense-row.edit-form .input-group:nth-child(3) {
+    width: 30%; /* Category field */
+}
+
+.expense-row.edit-form .expense-actions {
+    margin-left: auto;
+}
+
+.save-button {
+    padding: 8px 16px;
+    background-color: #40c057;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 40px;
+}
+
+.save-button:hover {
+    background-color: #37b24d;
+}
+
+.cancel-button {
+    padding: 8px 16px;
+    background-color: #e9ecef;
+    color: #495057;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 40px;
+}
+
+.cancel-button:hover {
+    background-color: #dee2e6;
+}
