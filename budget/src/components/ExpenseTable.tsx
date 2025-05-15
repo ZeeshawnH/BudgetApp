@@ -10,15 +10,18 @@ export interface ExpenseProps {
 
 type ExpenseRowProps = ExpenseProps & {
   onExpenseChange?: Dispatch<SetStateAction<ExpenseProps[]>>;
+  categories?: string[];
 };
 
-export function Expense({expenseName, amount, category, onExpenseChange}: ExpenseRowProps) {
+export function Expense({expenseName, amount, category, onExpenseChange, categories = []}: ExpenseRowProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(expenseName);
   const [editedAmount, setEditedAmount] = useState(amount);
   const [editedCategory, setEditedCategory] = useState(category || '');
   const [nameError, setNameError] = useState("");
   const [amountError, setAmountError] = useState("");
+  const [showCategoryInput, setShowCategoryInput] = useState(false);
+  const [newCategory, setNewCategory] = useState("");
 
   // Delete button handler
   const handleDelete = () => {
@@ -33,6 +36,16 @@ export function Expense({expenseName, amount, category, onExpenseChange}: Expens
   // Edit button handler
   const handleEdit = () => {
     setIsEditing(true);
+  };
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value === "addCategory") {
+      setShowCategoryInput(true);
+      setEditedCategory("");
+    } else {
+      setShowCategoryInput(false);
+      setEditedCategory(e.target.value);
+    }
   };
 
   // Save button handler for when editing
@@ -92,16 +105,6 @@ export function Expense({expenseName, amount, category, onExpenseChange}: Expens
 
         <div className="input-group">
           <input
-            type="text"
-            className="form-input"
-            placeholder="Category (optional)"
-            value={editedCategory}
-            onChange={(e) => setEditedCategory(e.target.value)}
-          />
-        </div>
-        
-        <div className="input-group">
-          <input
             type="number"
             className={`form-input ${amountError ? 'error' : ''}`}
             value={editedAmount || ''}
@@ -111,6 +114,56 @@ export function Expense({expenseName, amount, category, onExpenseChange}: Expens
             }}
           />
           {amountError && <small className="error-message">{amountError}</small>}
+        </div>
+
+        <div className="input-group">
+          {showCategoryInput ? (
+            <div className="category-input-group">
+              <input
+                type="text"
+                className="form-input"
+                placeholder="New Category"
+                value={newCategory}
+                onChange={(e) => setNewCategory(e.target.value)}
+              />
+              <button 
+                type="button" 
+                className="add-category-button"
+                onClick={() => {
+                  if (newCategory) {
+                    setEditedCategory(newCategory);
+                    setNewCategory("");
+                    setShowCategoryInput(false);
+                  }
+                }}
+              >
+                Add
+              </button>
+              <button 
+                type="button" 
+                className="back-category-button"
+                onClick={() => {
+                  setShowCategoryInput(false);
+                  setNewCategory("");
+                }}
+              >
+                Back
+              </button>
+            </div>
+          ) : (
+            <select 
+              name="category" 
+              id="categorySelector"
+              value={editedCategory}
+              onChange={handleCategoryChange}
+            >
+              <option value="">Select Category (optional)</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+              <option value="addCategory">Add Category</option>
+            </select>
+          )}
         </div>
 
         <div className="expense-actions">
@@ -146,9 +199,10 @@ interface ExpenseTableProps {
   total?: number;
   income?: number;
   onExpenseChange?: Dispatch<SetStateAction<ExpenseProps[]>>;
+  categories?: string[];
 }
 
-export default function ExpenseTable({expenses, total, income, onExpenseChange}: ExpenseTableProps) {
+export default function ExpenseTable({expenses, total, income, onExpenseChange, categories = []}: ExpenseTableProps) {
   return (
     <div className="expense-table">
       <div className="expense-header">
@@ -164,6 +218,7 @@ export default function ExpenseTable({expenses, total, income, onExpenseChange}:
             amount={expense.amount}
             category={expense.category}
             onExpenseChange={onExpenseChange}
+            categories={categories}
           />
         ))}
       </div>

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import ExpenseTable, { ExpenseProps } from './ExpenseTable';
 
 export interface CategoryProps {
     categoryName: string;
     budget?: number;
     expenses: ExpenseProps[];
+    onExpenseChange?: Dispatch<SetStateAction<ExpenseProps[]>>;
+    categories?: string[];
 }
 
-export default function Category({categoryName, budget, expenses}: CategoryProps) {
+export default function Category({categoryName, budget, expenses, onExpenseChange, categories = []}: CategoryProps) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
@@ -17,7 +19,11 @@ export default function Category({categoryName, budget, expenses}: CategoryProps
             <span className={`category-toggle ${isExpanded ? 'expanded' : ''}`}>▼</span>
         </div>
         <div className={`category-content ${isExpanded ? 'expanded' : ''}`}>
-            <ExpenseTable expenses={expenses}></ExpenseTable>
+            <ExpenseTable 
+              expenses={expenses} 
+              onExpenseChange={onExpenseChange}
+              categories={categories}
+            />
         </div>
     </div>
   );

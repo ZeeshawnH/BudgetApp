@@ -13,11 +13,13 @@ const EXPENSES: ExpenseProps[] = [
   { expenseName: "Transportation", amount: 100, category: "Transport" },
 ];
 
+const CATEGORIES: string[] = ["Housing", "Food", "Bills", "Transport"];
+
 function App() {
   const [income, setIncome] = useState(0);
   const [frequency, setFrequency] = useState<IncomeFrequency>(IncomeFrequency.MONTHLY);
   const [expenses, setExpenses] = useState<ExpenseProps[]>([...EXPENSES]);
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([...CATEGORIES]);
   const total = expenses.reduce((sum, e) => sum + e.amount, 0);
 
   return (
@@ -37,8 +39,22 @@ function App() {
           </div>
         )}
         <AddExpenses expenses={expenses} onAddExpense={setExpenses} categories={categories} onCategoryAdd={setCategories}/>
-        <ExpenseTable expenses={expenses} onExpenseChange={setExpenses} total={total} income={income}/>
-        <Category categoryName="Housing" budget={300} expenses={expenses}></Category>
+        {/* <ExpenseTable 
+          expenses={expenses} 
+          onExpenseChange={setExpenses} 
+          total={total} 
+          income={income}
+          categories={categories}
+        /> */}
+        {categories.map((c) => {
+          return <Category 
+            key={c}
+            categoryName={c} 
+            expenses={expenses.filter((e) => e.category === c)}
+            onExpenseChange={setExpenses}
+            categories={categories}
+          />
+        })}
         <input type="button" id="backButton" value="Back" className="hidden" />
         <input type="button" id="categoriesButton" value="Print Categories and Percents" />
       </div>
