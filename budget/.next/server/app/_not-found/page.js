@@ -1,0 +1,12 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_not-found/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0npup2c._.js")
+R.c("server/chunks/ssr/1eqf_next_dist_esm_build_templates_app-page_1dt5787.js")
+R.c("server/chunks/ssr/[root-of-the-server]__1wqd1vp._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0-r5qf_._.js")
+R.c("server/chunks/ssr/BudgetApp_worktrees_agents-migrate-app-to-nextjs_budget_app_layout_tsx_0hir5yd._.js")
+R.c("server/chunks/ssr/1eqf_next_dist_client_components_01k6rn-._.js")
+R.c("server/chunks/ssr/1eqf_next_dist_client_components_builtin_forbidden_0ie-ucx.js")
+R.c("server/chunks/ssr/1eqf_next_dist_client_components_builtin_unauthorized_0u3nkky.js")
+R.c("server/chunks/ssr/1b3x_budget__next-internal_server_app__not-found_page_actions_0s6i1ki.js")
+R.m(65882)
+module.exports=R.m(65882).exports
