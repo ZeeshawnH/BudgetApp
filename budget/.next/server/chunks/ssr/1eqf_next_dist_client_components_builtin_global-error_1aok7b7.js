@@ -1,0 +1,3 @@
+module.exports=[54854,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(9613);a.n(d("[project]/BudgetApp.worktrees/agents-migrate-app-to-nextjs/budget/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},46289,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(9613);a.n(d("[project]/BudgetApp.worktrees/agents-migrate-app-to-nextjs/budget/node_modules/next/dist/client/components/builtin/global-error.js"))},73410,a=>{"use strict";a.i(54854);var b=a.i(46289);a.n(b)},15861,a=>{a.n(a.i(73410))}];
+
+//# sourceMappingURL=1eqf_next_dist_client_components_builtin_global-error_1aok7b7.js.map

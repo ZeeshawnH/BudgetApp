@@ -1,0 +1,13 @@
+var R=require("../chunks/ssr/[turbopack]_runtime.js")("server/app/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0mpmh26._.js")
+R.c("server/chunks/ssr/1eqf_next_dist_esm_build_templates_app-page_1pogur4.js")
+R.c("server/chunks/ssr/[root-of-the-server]__1wqd1vp._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0-r5qf_._.js")
+R.c("server/chunks/ssr/BudgetApp_worktrees_agents-migrate-app-to-nextjs_budget_app_layout_tsx_0hir5yd._.js")
+R.c("server/chunks/ssr/1eqf_next_dist_client_components_01k6rn-._.js")
+R.c("server/chunks/ssr/1eqf_next_dist_client_components_builtin_forbidden_0ie-ucx.js")
+R.c("server/chunks/ssr/1eqf_next_dist_client_components_builtin_unauthorized_0u3nkky.js")
+R.c("server/chunks/ssr/1eqf_next_dist_client_components_builtin_global-error_1aok7b7.js")
+R.c("server/chunks/ssr/0c1z_ents-migrate-app-to-nextjs_budget__next-internal_server_app_page_actions_1wxnf_c.js")
+R.m(78937)
+module.exports=R.m(78937).exports
